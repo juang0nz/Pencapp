@@ -5,11 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PencApp</title>
   <link rel="stylesheet" href="./style.css">
+  <script src="./app.js" defer></script>
 </head>
-<body>
+<body onload="mostrarPartidos()">
   <h1>PencApp</h1>
-  <div class="resultados">
-    <div class="resultado">
+  <div class="resultados" id="resultados">
+
+     
+    <!-- <div class="resultado">
       <div class="equipo"> 
         <img src="uruguay.png" alt="uruguay">
         <p>Equipo 1</p>
@@ -62,8 +65,8 @@
         <img src="canada.png" alt="alemania">
         <p>Equipo 2</p>
       </div>
-    </div>
-  </div>
-   <script src="./app.js" defer></script>
+    </div> -->
+  </div> 
+  <button id="guardarTodos" >Guardar todos</button>
 </body>
 </html>

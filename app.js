@@ -5,50 +5,65 @@
     fetch ("http://localhost:3000/partidos")
     .then (response => response.json())
     .then (data =>  console.log(data));*/
-
-try {
-    const response = await fetch("http://localhost:3000/partidos");
-    if (!response.ok) {
-        throw new Error("Error HTTP: " + response.status);
-    }
-    const partidos = await response.json();
-    console.log(data);
-} catch (error) {
-    console.error("Hubo un problema:", error);
-}
-try {
-    const response = await fetch("http://localhost:3000/equipos");
-    if (!response.ok) {
-        throw new Error("Error HTTP: " + response.status);
-    }
-    const equipos = await response.json();
-    console.log(data);
-} catch (error) {
-    console.error("Hubo un problema:", error);
-}
-
-
-const partidosHTML = partidos.map(partido => {
-const eq1 = equipos.find(equipo => equipo.id === partido.equipoLocal);
-return ` <div class="resultado">
-      <div class="equipo"> 
-        <img src="uruguay.png" alt="uruguay">
-        <p>${eq1.nombre}</p>
-      </div>
-      <div class="rel">
-        <div class="golesLocal">1</div>
-        <div class="separator">-</div>
-        <div class="golesVisitante">0</div>
-      </div>
-      <div class="equipo"> 
-        <img src="brasil.jpg" alt="brasil">
-        <p>Equipo 2</p>
-      </div>
-    </div>` 
-
-}
     
-))
+async function request(url) {
+    const response = await fetch(url);
+    if (!response.ok) {
+        throw new Error("Error HTTP: " + response.status);
+    }
+    return await response.json();
+}
 
-// obtener elemento con clase resultados
-// elementoObtenido.innerHTML = partidosHTML.join(',');
+async function mostrarPartidos() {
+    const partidos = await request("http://localhost:3000/partidos");
+    const equipos = await request("http://localhost:3000/equipos");
+
+    const btn = document.getElementById("guardarTodos");
+    // cargarle el evento de on click con el listener
+
+    btn.addEventListener("click", guardarTodosResultados);
+
+    const partidosHTML = partidos.map(partido => {
+        const eq1 = equipos.find(equipo => equipo.id === partido.equipoLocal);
+        const eq2 = equipos.find(equipo => equipo.id === partido.equipoVisitante);
+        const imgDeEquipo1 = eq1?.img;
+        const imgDeEquipo2 = eq2?.img; 
+        const golesLocales = partido.golesLocal;
+        const golesVisitantes = partido.golesVisitante;
+        return `<div class="resultado" data-id="${partido.id}">
+            <div class="equipo">
+                <img src="${imgDeEquipo1}" alt="${eq1.nombre}">
+                <p>${eq1.nombre}</p>
+            </div>
+            <div class="rel">
+                <input type="number" class="golesLocal" value="${partido.golesLocal}">
+                <span class="separator">-</span>
+                <input type="number" class="golesVisitante" value="${partido.golesVisitante}">
+            </div>
+            <div class="equipo"> 
+                <img src="${imgDeEquipo2}" alt="${eq2.nombre}">
+                <p>${eq2.nombre}</p>
+            </div>
+        </div>`
+    });
+    document.getElementById("resultados").innerHTML = partidosHTML.join('');
+}
+
+
+async function guardarTodosResultados() {
+    const resultados = document.querySelectorAll('.resultado');
+    for (const resultadoDiv of resultados) {
+        const partidoId = resultadoDiv.getAttribute('data-id');
+        const golesLocal = resultadoDiv.querySelector('.golesLocal').value;
+        const golesVisitante = resultadoDiv.querySelector('.golesVisitante').value;
+
+        await fetch(`http://localhost:3000/partidos/${partidoId}`, {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                golesLocal: Number(golesLocal),
+                golesVisitante: Number(golesVisitante)
+            })
+        });
+    }
+}

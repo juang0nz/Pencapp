@@ -1,78 +1,78 @@
 {
-    "equipos": [
-        {
-            "id": 1,
-            "nombre": "Uruguay",
-            "img": "uruguay.png"
-        },
-        {
-            "id": 2,
-            "nombre": "Brasil",
-            "img": "brasil.jpg"
-        },
-        {
-            "id": 3,
-            "nombre": "Argentina",
-            "img": "argentina.png"
-        },
-        {
-            "id": 4,
-            "nombre": "Alemania",
-            "img": "alemania.png"
-        },
-        {
-            "id": 5,
-            "nombre": "México",
-            "img": "mexico.jpg"
-        },
-        {
-            "id": 6,
-            "nombre": "Paraguay",
-            "img": "paraguay.jpg"
-        },
-        {
-            "id": 7,
-            "nombre": "Croacia",
-            "img": "croacia.png"
-        },
-        {
-            "id": 8,
-            "nombre": "Canadá",
-            "img": "canada.png"
-        }
-    ],
-    "partidos": [
-        {
-            "id": 1,
-            "equipoLocal": 1,
-            "equipoVisitante": 2,
-            "fecha": "2024-11-20",
-            "golesLocal": 0,
-            "golesVisitante": 0
-        },
-        {
-            "id": 2,
-            "equipoLocal": 3,
-            "equipoVisitante": 4,
-            "fecha": "2024-11-21",
-            "golesLocal": 0,
-            "golesVisitante": 0
-        },
-        {
-            "id": 3,
-            "equipoLocal": 5,
-            "equipoVisitante": 6,
-            "fecha": "2024-11-22",
-            "golesLocal": 0,
-            "golesVisitante": 0
-        },
-        {
-            "id": 4,
-            "equipoLocal": 7,
-            "equipoVisitante": 8,
-            "fecha": "2024-11-23",
-            "golesLocal": 0,
-            "golesVisitante": 0
-        }
-    ]
+  "equipos": [
+    {
+      "id": "1",
+      "nombre": "Uruguay",
+      "img": "uruguay.png"
+    },
+    {
+      "id": "2",
+      "nombre": "Brasil",
+      "img": "brasil.jpg"
+    },
+    {
+      "id": "3",
+      "nombre": "Argentina",
+      "img": "argentina.png"
+    },
+    {
+      "id": "4",
+      "nombre": "Alemania",
+      "img": "alemania.png"
+    },
+    {
+      "id": "5",
+      "nombre": "México",
+      "img": "mexico.jpg"
+    },
+    {
+      "id": "6",
+      "nombre": "Paraguay",
+      "img": "paraguay.jpg"
+    },
+    {
+      "id": "7",
+      "nombre": "Croacia",
+      "img": "croacia.png"
+    },
+    {
+      "id": "8",
+      "nombre": "Canadá",
+      "img": "canada.png"
+    }
+  ],
+  "partidos": [
+    {
+      "id": "1",
+      "equipoLocal": "1",
+      "equipoVisitante": "2",
+      "fecha": "2024-11-20",
+      "golesLocal": 5,
+      "golesVisitante": 3
+    },
+    {
+      "id": "2",
+      "equipoLocal": "3",
+      "equipoVisitante": "4",
+      "fecha": "2024-11-21",
+      "golesLocal": 5,
+      "golesVisitante": 0
+    },
+    {
+      "id": "3",
+      "equipoLocal": "5",
+      "equipoVisitante": "6",
+      "fecha": "2024-11-22",
+      "golesLocal": 0,
+      "golesVisitante": 0
+    },
+    {
+      "id": "4",
+      "equipoLocal": "7",
+      "equipoVisitante": "8",
+      "fecha": "2024-11-23",
+      "golesLocal": 3,
+      "golesVisitante": 5
+    }
+  ]
 }
