@@ -30,7 +30,7 @@ async function mostrarPartidos() {
         const imgDeEquipo2 = eq2?.img; 
         const golesLocales = partido.golesLocal;
         const golesVisitantes = partido.golesVisitante;
-        return `<div class="resultado" data-id="${partido.id}">
+        return `<div class="resultado" id="${partido.id}">
             <div class="equipo">
                 <img src="${imgDeEquipo1}" alt="${eq1.nombre}">
                 <p>${eq1.nombre}</p>
@@ -44,6 +44,7 @@ async function mostrarPartidos() {
                 <img src="${imgDeEquipo2}" alt="${eq2.nombre}">
                 <p>${eq2.nombre}</p>
             </div>
+            <button onclick="eliminarPartido(${partido.id})">Eliminar</button>
         </div>`
     });
     document.getElementById("resultados").innerHTML = partidosHTML.join('');
@@ -53,7 +54,7 @@ async function mostrarPartidos() {
 async function guardarTodosResultados() {
     const resultados = document.querySelectorAll('.resultado');
     for (const resultadoDiv of resultados) {
-        const partidoId = resultadoDiv.getAttribute('data-id');
+        const partidoId = resultadoDiv.getAttribute('id');
         const golesLocal = resultadoDiv.querySelector('.golesLocal').value;
         const golesVisitante = resultadoDiv.querySelector('.golesVisitante').value;
 
@@ -65,5 +66,17 @@ async function guardarTodosResultados() {
                 golesVisitante: Number(golesVisitante)
             })
         });
+    
+    }
+}
+
+async function eliminarPartido(partidoId) {
+    await fetch(`http://localhost:3000/partidos/${partidoId}`, {
+        method: 'DELETE'
+    });
+    // Elimina el div del DOM
+    const divcorrespondiente = document.getElementById(partidoId);
+    if (divcorrespondiente) {
+        divcorrespondiente.remove();
     }
 }
